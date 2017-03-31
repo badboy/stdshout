@@ -13,6 +13,13 @@ It's more C code to turn that into your program's default stdout behaviour.
 But with some tricky file descriptor redirection, forking and preloading we can turn your precious stdout
 into the shouting machine you always wanted.
 
+Currently only works on Linux.
+
+## Requirements
+
+* rustc and cargo (any version)
+* gcc
+
 ## Example
 
 ```
