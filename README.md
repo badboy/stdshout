@@ -2,7 +2,7 @@
 
 **CAUTION: It will shout at you!!!1!**
 
-> [@Argorak](https://github.com/skade): stdshout  
+> [@Argorak](https://github.com/skade): stdshout
 > [@pobocks](https://github.com/pobocks): now I kind of want a magic fd that assumes utf-8 and upcases everything and appends !!!1! to it.
 
 It all started [with a tweet](https://twitter.com/Argorak/status/836532440420204544) and [a reply](https://twitter.com/pobocks/status/836534631822409728).
