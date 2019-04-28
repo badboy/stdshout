@@ -18,7 +18,6 @@ Currently only works on Linux.
 ## Requirements
 
 * rustc and cargo (any version)
-* gcc
 
 ## Example
 
