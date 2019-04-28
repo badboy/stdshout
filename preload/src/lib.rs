@@ -53,6 +53,9 @@ fn reopen_stdout() {
         return;
     }
 
+    let args = [CString::new("stdshout").unwrap()];
+    let path = CString::new(stdshout).unwrap();
+
     match fork() {
         Err(_) => {
             eprintln!("Can't fork");
@@ -64,8 +67,6 @@ fn reopen_stdout() {
             let _ = dup2(read, stdin().as_raw_fd());
             let _ = dup2(old_stdout, stdout.as_raw_fd());
 
-            let args = [CString::new("stdshout").unwrap()];
-            let path = CString::new(stdshout).unwrap();
             let _ = execv(&path, &args[..]);
             eprintln!("Something went wrong");
         },
