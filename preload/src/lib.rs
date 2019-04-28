@@ -5,7 +5,7 @@ use std::io::{stdin, stdout};
 use std::os::unix::io::AsRawFd;
 
 use ctor::ctor;
-use nix::unistd::{close, dup, dup2, execv, fork, ForkResult, pipe};
+use nix::unistd::{close, dup, dup2, execv, fork, pipe, ForkResult};
 
 #[ctor]
 fn reopen_stdout() {
@@ -17,7 +17,7 @@ fn reopen_stdout() {
             } else {
                 var
             }
-        },
+        }
         _ => {
             eprintln!("Can't find stdshout exe. Set STDSHOUT_EXE to the full path.");
             return;
@@ -29,7 +29,7 @@ fn reopen_stdout() {
             eprintln!("Can't read /proc/self/exe");
             return;
         }
-        Ok(path) => format!("{}", path.display())
+        Ok(path) => format!("{}", path.display()),
     };
 
     if linkname == stdshout {
@@ -60,7 +60,7 @@ fn reopen_stdout() {
         Err(_) => {
             eprintln!("Can't fork");
             return;
-        },
+        }
         Ok(ForkResult::Child) => {
             let _ = close(write);
 
@@ -69,10 +69,9 @@ fn reopen_stdout() {
 
             let _ = execv(&path, &args[..]);
             eprintln!("Something went wrong");
-        },
+        }
         Ok(ForkResult::Parent { .. }) => {
             close(read).unwrap();
         }
     }
-
 }

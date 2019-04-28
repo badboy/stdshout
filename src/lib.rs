@@ -9,7 +9,7 @@
 use std::io;
 use std::io::Write;
 
-const APPEND : &str = "!!!1!";
+const APPEND: &str = "!!!1!";
 
 pub struct Stdshout<W: Write>(W);
 
