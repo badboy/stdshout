@@ -1,0 +1,13 @@
+[package]
+name = "stdshout_preload"
+version = "0.1.0"
+authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
+edition = "2018"
+
+[lib]
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+ctor = "0.1.9"
+nix = "0.13.0"
