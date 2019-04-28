@@ -11,13 +11,13 @@ use nix::unistd::{close, dup, dup2, execv, fork, ForkResult, pipe};
 fn reopen_stdout() {
     let stdshout = match env::var("STDSHOUT_EXE") {
         Ok(var) => {
-            if var.len() > 0 {
-                var
-            } else {
+            if var.is_empty() {
                 eprintln!("Can't find stdshout exe. Set STDSHOUT_EXE to the full path.");
                 return;
+            } else {
+                var
             }
-        }
+        },
         _ => {
             eprintln!("Can't find stdshout exe. Set STDSHOUT_EXE to the full path.");
             return;
@@ -48,7 +48,7 @@ fn reopen_stdout() {
         }
     };
 
-    if let Err(_) = dup2(write, stdout.as_raw_fd()) {
+    if dup2(write, stdout.as_raw_fd()).is_err() {
         eprintln!("Can't dup write fd");
         return;
     }

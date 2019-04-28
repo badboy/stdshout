@@ -9,7 +9,7 @@
 use std::io;
 use std::io::Write;
 
-const APPEND : &'static str = "!!!1!";
+const APPEND : &str = "!!!1!";
 
 pub struct Stdshout<W: Write>(W);
 
@@ -21,12 +21,12 @@ impl<W: Write> Stdshout<W> {
 
 impl<W: Write> Write for Stdshout<W> {
     fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
-        let lossy = String::from_utf8_lossy(buf.as_ref()).to_uppercase();
+        let lossy = String::from_utf8_lossy(buf).to_uppercase();
         for line in lossy.split('\n') {
             if line.len() > 0 {
-                self.0.write(line.as_bytes())?;
-                self.0.write(APPEND.as_bytes())?;
-                self.0.write(b"\n")?;
+                self.0.write_all(line.as_bytes())?;
+                self.0.write_all(APPEND.as_bytes())?;
+                self.0.write_all(b"\n")?;
             }
         }
 
