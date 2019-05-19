@@ -1,7 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900);
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
 body {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Nunito', 'Roboto', 'Source Sans Pro', sans-serif;
 }
 
 .remark-notes p {
@@ -68,6 +70,14 @@ a:active, a:hover {
 
 .footnote {
   font-size: 1.0em;
+  padding: 5px;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: white;
+}
+.sfootnote {
+  font-size: 0.7em;
   padding: 5px;
   position: absolute;
   bottom: 20px;

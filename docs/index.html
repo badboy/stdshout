@@ -22,12 +22,6 @@ class: middle
 
 ---
 
-class: slide
-
-# A shell that shouts at you
-
----
-
 > @Argorak tweeted:
 >
 > stdshout
@@ -67,6 +61,76 @@ class: middle
 # What if ...
 # we can do that for every output?
 
+---
+
+# Everything is a file
+
+---
+
+# Everything is a file descriptor
+
+---
+
+# Everything is a file description
+
+
+---
+
+# stdin = 0
+--
+
+# stdout = 1
+--
+
+# stderr = 2
+
+---
+class: center, middle
+
+# close(stdout)
+
+---
+class: center, middle
+
+# puts("Hello, World!")
+
+---
+
+---
+
+background-image: url(media/were-closed.jpg)
+background-size: cover
+
+.sfootnote[by [Nick Papakyriazis](https://www.flickr.com/photos/mlrs193/6015396482), [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/2.0/)]
+
+---
+class: center, middle
+
+# fd = open("file.txt", O_CREAT, S_IRUSR)
+
+---
+class: center, middle
+
+# fd = ?
+
+---
+class: center, middle
+
+# fd = 1
+
+---
+class: center, middle
+
+# puts("Hello, World!")
+
+---
+
+---
+
+class: middle
+
+# $ cat file.txt
+# Hello, World!
 
 ---
 
