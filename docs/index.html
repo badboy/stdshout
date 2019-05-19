@@ -154,7 +154,115 @@ class: middle, center
 
 ---
 
-# $ echo Hello, Enthusiasticon
+# $ echo hello, enthusiasticon
+# HELLO, ENTHUSIASTICON!!!1!
+
+---
+
+## "hello enthusiasticon".to_uppercase()
+## # => "HELLO ENTHUSIASTICON"
+
+--
+
+<span style="visibility:hidden">hidden</span>
+## "hello enthusiasticon".to_uppercase() + "!!1!"
+## # => "HELLO ENTHUSIASTICON!!1!"
+
+---
+
+class: middle
+
+```
+fn shout(msg: &str) -> String {
+    msg.to_uppercase() + "!!1!"
+}
+
+```
+
+---
+
+```
+#[ctor]
+fn reopen_stdout() {
+    // start shouting
+}
+```
+
+---
+
+```
+#[ctor]
+fn reopen_stdout() {
+    // find stdshout exe
+```
+
+--
+
+```
+    // save current stdout
+```
+
+--
+
+```
+    // replace stdout
+```
+
+---
+
+```
+fn reopen_stdout() {
+    // find stdshout exe
+    // save current stdout
+    // replace stdout
+```
+
+---
+
+```
+    // find stdshout exe
+    // save current stdout
+    // replace stdout
+```
+
+--
+
+```
+    // fork
+```
+
+--
+
+```
+    // (child) read <=> stdin
+```
+
+---
+
+```
+    // save current stdout
+    // replace stdout
+    // fork
+    // (child) read <=> stdin
+```
+
+---
+
+```
+    // replace stdout
+    // fork
+    // (child) read <=> stdin
+```
+
+--
+
+```
+    // exec stdshout
+```
+
+---
+
+# $ echo hello, enthusiasticon
 # HELLO, ENTHUSIASTICON!!!1!
 
 ---

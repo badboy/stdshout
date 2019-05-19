@@ -12,12 +12,11 @@ body {
   margin-bottom: 15px;
 }
 
-.remark-code-span-highlighted,
-.remark-code-line-highlighted {
-  background-color: rgba(255, 255, 0, 1);
-  padding: 0;
+.remark-code {
+  font-size: 4em;
+  font-family: 'Nunito', monospace;
+  font-weight: bold;
 }
-
 
 .footer {
   position: absolute;
@@ -38,12 +37,8 @@ body {
   margin-top: 0;
 }
 .remark-slide-content h2 {
+  font-size: 2.5em;
   margin-top: 0;
-}
-
-code {
-  padding: 15px;
-  text-align: left;
 }
 
 a {
@@ -52,20 +47,6 @@ a {
 a:active, a:hover {
   color: #00e;
   text-decoration: none;
-}
-
-.imgfull img {
-  width: 100%;
-}
-.imgnormal img {
-  width: auto;
-}
-.wasmlogo img {
-  width: 712px;
-}
-
-.gif {
-  background-size: 100%;
 }
 
 .footnote {
