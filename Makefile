@@ -1,12 +1,11 @@
-all: preload/target/release/libstdshout_preload.so target/release/stdshout
+all: target/release/libstdshout_preload.so target/release/stdshout
 
-target/release/stdshout: src/bin/stdshout.rs
+target/release/stdshout: stdshout/src/bin/stdshout.rs stdshout/src/lib.rs
+	cargo build --release
+
+target/release/libstdshout_preload.so: preload/src/lib.rs
 	cargo build --release
 
 
-preload/target/release/libstdshout_preload.so: preload/src/lib.rs
-	cd preload && cargo build --release
-
-
 run: all
-	@bash -c 'STDSHOUT_EXE=$$(readlink -f target/release/stdshout) LD_PRELOAD=./preload/target/release/libstdshout_preload.so $${SHELL}'
+	@bash -c 'STDSHOUT_EXE=$$(readlink -f target/release/stdshout) LD_PRELOAD=./target/release/libstdshout_preload.so sh'

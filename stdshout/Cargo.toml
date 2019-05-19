@@ -1,0 +1,8 @@
+[package]
+name = "stdshout"
+version = "0.1.0"
+authors = ["Jan-Erik Rediger <janerik@fnordig.de>"]
+license = "MIT"
+description = "Shout it out! SHOUT IT OUT!!!1!"
+homepage = "https://github.com/badboy/stdshout"
+repository = "https://github.com/badboy/stdshout"
