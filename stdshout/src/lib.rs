@@ -26,8 +26,8 @@ impl<W: Write> Write for Stdshout<W> {
             if line.len() > 0 {
                 self.0.write_all(line.as_bytes())?;
                 self.0.write_all(APPEND.as_bytes())?;
-                self.0.write_all(b"\n")?;
             }
+            self.0.write_all(b"\n")?;
         }
 
         Ok(buf.len())
