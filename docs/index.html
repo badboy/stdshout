@@ -20,6 +20,14 @@ class: middle
 
 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"><img class="license" src="media/cc-by-nc-sa.svg"></a>
 
+???
+
+Hi!
+
+I'm here to talk about a shell that shouts at you.
+
+And how a tweet got me into writing 100 lines of Rust code.
+
 ---
 
 > @Argorak tweeted:
@@ -31,6 +39,16 @@ class: middle
 
 .footnote[[Tweet Link](https://twitter.com/Argorak/status/836532440420204544)]
 
+???
+
+2 years ago a friend of mine,
+
+florian aka argorak
+
+tweeted a single word:
+
+stdshout.
+
 ---
 
 > @pobocks replying to [@Argorak](https://twitter.com/Argorak/status/836532440420204544):
@@ -41,12 +59,36 @@ class: middle
 
 .footnote[[Tweet Link](https://twitter.com/pobocks/status/836534631822409728)]
 
+???
+
+and someone else replied:
+
+[read tweet]
+
+---
+
+class: middle, center
+
+# Well ...
+
+???
+
+Well
+
+[pause]
+
 ---
 
 class: middle
 
 # What if ...?
 # <span style="visibility:hidden">we can do that for every output?</span>
+
+???
+
+What if
+
+[pause]
 
 ---
 
@@ -55,28 +97,82 @@ class: middle
 # What if ...
 # we can do that for every output?
 
+???
+
+What if we can do that for every output
+
+of every program
+
+started from your shell
+
 ---
 
 # Everything is a file
+
+???
+
+as you might have heard
+
+everything is a file
 
 ---
 
 # Everything is a file descriptor
 
+???
+
+and everything is identified by a file descriptor
+
+actually it's just a number
+
 ---
 
 # Everything is a file description
 
+???
+
+Now to extend the confusion
+
+the linux kernel has file descriptions internally
+
+---
+
+
+???
+
+even if you never really directly used file descriptors
+
+you have interacted with the standard ones
+
 ---
 
 # stdin
+???
+
+3 exist
+
+stdin is the input
+
+usually your keyboard
 --
 
 # stdout
+???
+
+stdout is the output
+
+that's what you see in your terminal when you print stuff
 --
 
 # stderr
 
+???
+
+and then there is stderr
+
+it's also connected to the output, your terminal
+
+but with small differences
 
 ---
 
@@ -86,17 +182,47 @@ class: middle
 
 # stderr = 2
 
+???
+
+now all three actually have file descriptors
+
+which are just numbers
+
+one
+
+two
+
+three
+
+and none of these are actually special
+
+they act just the same as a file descriptor for a file
+
 ---
 class: center, middle
 
 # close(stdout)
+
+???
+
+for example you can stdout
 
 ---
 class: center, middle
 
 # puts("Hello, World!")
 
+???
+
+now what happens if you try to print something to the terminal?
+
 ---
+
+???
+
+[pause]
+
+nothing
 
 ---
 
@@ -105,27 +231,74 @@ background-size: cover
 
 .sfootnote[by [Nick Papakyriazis](https://www.flickr.com/photos/mlrs193/6015396482), [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/2.0/)]
 
+
+???
+
+we closed stdout
+
+we can't print to it anymore
+
 ---
 class: center, middle
 
 # fd = open("file.txt", O_CREAT, S_IRUSR)
+
+???
+
+let's open another file called file.txt
+
+yes, that is the low-level POSIX way to open a file in C
 
 ---
 class: center, middle
 
 # fd = ?
 
+???
+
+what is fd now?
+
+yes, it is a number
+
+but which?
+
 ---
 class: center, middle
 
 # fd = 1
+
+???
+
+linux is pretty simple
+
+it just picks the lowest unused number
+
+which is 1
+
+remember: we previously closed what used to be 1
 
 ---
 class: center, middle
 
 # puts("Hello, World!")
 
+???
+
+now we print again
+
+and what happens?
+
 ---
+
+???
+
+exactly
+
+we still see nothing
+
+stdout or fd 1 as we call it
+
+is not our terminal anymore
 
 ---
 
@@ -134,11 +307,25 @@ class: middle
 # $ cat file.txt
 # Hello, World!
 
+???
+
+there we have our output
+
+it's in the file we created
+
+puts just writes to fd 1
+
+and we controlled what is fd 1
+
 ---
 
 class: middle
 
 # ... and now for something completely different
+
+???
+
+but now for something completely different
 
 ---
 
