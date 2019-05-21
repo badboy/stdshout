@@ -93,6 +93,10 @@ li > ul li {
   padding: 0;
 }
 
+.withimg img {
+  width: 30%;
+}
+
 @media print {
   * {
      animation : none !important;
