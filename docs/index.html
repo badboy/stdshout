@@ -45,7 +45,7 @@ class: middle
 
 class: middle, center
 
-# WAAAAAH!!1!
+# WAAAAAH!!!1!
 
 ---
 
@@ -73,14 +73,22 @@ class: middle
 
 # Everything is a file description
 
+---
+
+# stdin
+--
+
+# stdout
+--
+
+# stderr
+
 
 ---
 
 # stdin = 0
---
 
 # stdout = 1
---
 
 # stderr = 2
 
@@ -134,7 +142,13 @@ class: middle
 
 ---
 
+class: middle
+
+# ... and now for something completely different
+
 ---
+
+class: middle
 
 # Run before everything everything else
 
@@ -148,13 +162,13 @@ class: middle
 
 class: middle, center
 
-# STDSHOUT!!1!
+# STDSHOUT!!!1!
 
 .footnote[<i class="fab fa-github"></i>/badboy/stdshout]
 
 ---
 
-# $ echo hello, enthusiasticon
+# $ echo hello, enthusiasticon | stdshout
 # HELLO, ENTHUSIASTICON!!!1!
 
 ---
@@ -165,8 +179,8 @@ class: middle, center
 --
 
 <span style="visibility:hidden">hidden</span>
-## "hello enthusiasticon".to_uppercase() + "!!1!"
-## # => "HELLO ENTHUSIASTICON!!1!"
+## "hello enthusiasticon".to_uppercase() + "!!!1!"
+## # => "HELLO ENTHUSIASTICON!!!1!"
 
 ---
 
@@ -174,10 +188,32 @@ class: middle
 
 ```
 fn shout(msg: &str) -> String {
-    msg.to_uppercase() + "!!1!"
+    msg.to_uppercase() + "!!!1!"
 }
 
 ```
+
+---
+
+class: middle
+
+```
+fn main() {
+    puts(shout(stdin.read()));
+}
+
+```
+
+---
+
+# $ echo hello, enthusiasticon | stdshout
+# HELLO, ENTHUSIASTICON!!!1!
+
+---
+
+class: middle
+
+# Run before everything everything else?
 
 ---
 
@@ -262,8 +298,19 @@ fn reopen_stdout() {
 
 ---
 
+# $ make run
+
+---
+
+
 # $ echo hello, enthusiasticon
 # HELLO, ENTHUSIASTICON!!!1!
+
+---
+
+# $ git status
+# ON BRANCH MASTER!!!1!
+# YOUR BRANCH IS UP TO DATE WITH 'U/MASTER'
 
 ---
 
