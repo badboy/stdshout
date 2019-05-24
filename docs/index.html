@@ -26,7 +26,11 @@ Hi!
 
 I'm here to talk about a shell that shouts at you.
 
-And how a tweet got me into writing 100 lines of Rust code.
+Disclaimer: I'm not gonna shout on stage.
+
+This is also about how I learned a bit more about Linux and files
+
+and how a tweet got me into writing 100 lines of Rust code.
 
 ---
 
@@ -269,11 +273,13 @@ class: center, middle
 
 ???
 
+it's 1
+
 linux is pretty simple
 
 it just picks the lowest unused number
 
-which is 1
+which for us is 1
 
 remember: we previously closed what used to be 1
 
@@ -333,6 +339,14 @@ class: middle, center
 
 # Run before everything else
 
+???
+
+to affect every program's output
+
+we need to run before everything else
+
+how do we do this
+
 ---
 
 class: middle, center
@@ -343,29 +357,57 @@ class: middle, center
 
 ???
 
-[quote]
+turns out there's a special environment variable that we can use
 
-When you run LD_PRELOAD=/path/to/my/free.so /bin/mybinary, /path/to/my/free.so is loaded before any other library, including libc.
+LD_PRELOAD
+
+LD_PRELOAD allows you to specify a library and that gets run before any other library
+
+even the standard library or the program
 
 ---
 
 ## Things LD_PRELOAD can do
 
+.footnote[Jess Fraz's [LD_PRELOAD: The Hero We Need and Deserve](https://blog.jessfraz.com/post/ld_preload/)]
+
+???
+
+so what can you do with this?
+all sorts of things
+
 --
 
 * Time travel
+???
+
+you can modify time functions and travel in time
 --
 
 * Changing the environment
+???
+
+you can change everything in the environment
 --
 
 * Make Dropbox work on non-ext4
+???
+
+you can even make dropbox think it runs on ext4
 --
 
 * Disabling TLS cert validation
+???
+
+or disable tls certificate validation. dont do this
 
 --
+
 * ... everything else
+
+???
+
+but it's just code so you can pretty much do anything
 
 ---
 
@@ -373,23 +415,37 @@ class: middle, center
 
 # Run before everything else?
 
+???
+
+LD_PRELOAD loads libraries.
+
+a library doesn't have a main function
+
+how do we then run code before everything else?
+
 ---
 
 class: center, middle, h1small
 
 # \_\_attribute\_\_((constructor))
 
+.footnote[docs: <https://gcc.gnu.org/onlinedocs/gcc-4.7.0/gcc/Function-Attributes.html>]
+
 ???
 
-The constructor attribute causes the function to be called automatically before execution enters main ()
+We can use a not well known attribute to create a "constructor"
 
-[source: https://gcc.gnu.org/onlinedocs/gcc-4.7.0/gcc/Function-Attributes.html]
+The constructor attribute causes the function to be called automatically before execution enters main ()
 
 ---
 
 class: middle
 
 # ... and now for something completely different
+
+???
+
+but now for something completely different
 
 ---
 
@@ -399,21 +455,47 @@ class: middle, center
 
 .footnote[<i class="fab fa-github"></i>/badboy/stdshout]
 
+???
+
+stdshout bang bang bang one bang
+
+the original request
+
 ---
 
 # $ echo hello, enthusiasticon | stdshout
 # HELLO, ENTHUSIASTICON!!!1!
+
+???
+
+we wanted something that
+
+takes every input
+
+turns it to uppercase
+
+and append bang bang bang one bang
+
+I am a rust developer and in Rust this is a rather simple task
 
 ---
 
 ## "hello enthusiasticon".to_uppercase()
 ## # => "HELLO ENTHUSIASTICON"
 
+???
+
+turning a string into all uppercase is just calling a function called to_uppercase on it
+
 --
 
 <span style="visibility:hidden">hidden</span>
 ## "hello enthusiasticon".to_uppercase() + "!!!1!"
 ## # => "HELLO ENTHUSIASTICON!!!1!"
+
+???
+
+appending a bang bang bang one bang is just as easily done with the add operation
 
 ---
 
@@ -426,6 +508,10 @@ fn shout(msg: &str) -> String {
 
 ```
 
+???
+
+we can now put this into a function ...
+
 ---
 
 class: middle
@@ -437,10 +523,22 @@ fn main() {
 
 ```
 
+???
+
+then we can read from stdin
+
+use our function to shout
+
+and print it back out to stdout
+
 ---
 
 # $ echo hello, enthusiasticon | stdshout
 # HELLO, ENTHUSIASTICON!!!1!
+
+???
+
+and there we have stdshout
 
 ---
 
@@ -448,11 +546,32 @@ class: middle
 
 # Run before everything else?
 
+???
+
+now the second part of the request was doing that for every output
+
+of every program
+
+... and we now know how to run before everything else
+
 ---
 
-class: middle, center
+class: middle, center, h1small
 
 # LD_PRELOAD!!!1!
+
+
+???
+
+using LD_PRELOAD bang bang bang one bang
+
+--
+
+# & \_\_attribute\_\_((constructor))
+
+???
+
+and the constructor attribute
 
 ---
 
@@ -463,17 +582,43 @@ fn start_stdhout() {
 }
 ```
 
+???
+
+now putting this all together
+
+we build a library
+
+using the constructor
+
+and start shouting
+
+but that middle part?
+
 ---
 
 class: middle
 
 # Do something for every output?
 
+???
+
+we want to do it for every output of every program
+
+how do we do that?
+
+we learned about it before!
+
 ---
 
 class: middle, center
 
 # File Descriptor Magic
+
+???
+
+file descriptor magic
+
+we can close and reopen and redirect as needed
 
 ---
 
@@ -483,6 +628,18 @@ class: center, fullimg
 
 .footnote[Keyboard by worker, screen by Adrien Coquet, <br>application by Arief Sugiyanto from the [Noun Project](https://thenounproject.com/)]
 
+???
+
+so before we had our normal program
+
+stdin comes from the keyboard
+
+goes into the program
+
+the program prints
+
+and that goes to stdout
+
 ---
 
 class: center, fullimg
@@ -491,17 +648,47 @@ class: center, fullimg
 
 .footnote[Keyboard by worker, screen by Adrien Coquet, <br>application by Arief Sugiyanto from the [Noun Project](https://thenounproject.com/)]
 
+???
+
+now with LD_PRELOAD we inject ourselves and do some of this file descriptor magic before the application launches
+
+we start a stdshout instance
+
+and redirect the applications stdout into stdshout's stdin
+
+which outputs into the real stdout, your terminal
+
+
+yes, this is essentially just a pipe
+
+yes, you can achieve this in an easier way
+
+
 ---
 
 class: h1small
 
 # $ LD_PRELOAD=stdshout.so bash
 
+???
+
+but we don't go the easy way
+
+so we now use LD_PRELOAD on our stdshout library and start a shell
+
 ---
 
 
 # $ echo hello, enthusiasticon
 # HELLO, ENTHUSIASTICON!!!1!
+
+???
+
+and finally it all works!
+
+we have a working stdshout for every programs output
+
+and when I say every program I mean every program
 
 ---
 
@@ -511,10 +698,22 @@ class: h1small
 # ON BRANCH MASTER!!!1!
 # YOUR BRANCH IS UP TO DATE WITH 'ORIGIN/MASTER'!!!1!
 
+???
+
+even git
+
 ---
 
 background-size: contain
 background-image: url(media/git-log.png)
+
+???
+
+the nice thing about also having a stdshout program now
+
+we can use it as input for other programs
+
+and make our commit messages more on point
 
 ---
 
@@ -524,8 +723,17 @@ background-image: url(media/git-log.png)
 >
 > (Feb 28, 2017)
 
-
 .footnote[[Tweet Link](https://twitter.com/Argorak/status/836532440420204544)]
+
+???
+
+and this is how a tweet with jus a single word
+
+led me down a long path of understanding file descriptors and linux a little bit better
+
+so whenever you come across a small silly idea ... maybe just implement it
+
+you might learn something
 
 ---
 
@@ -537,6 +745,12 @@ class: center, withimg
 
 ## <https://rustfest.eu>
 
+???
+
+quick side info: I'm one of the Rustfest organizers
+
+and later this year RustFest will happen in Barcelona and I invite you all to join us and learn about Rust
+
 ---
 
 class: middle, center
@@ -547,6 +761,10 @@ class: middle, center
 ## <i class="fab fa-github"></i>/badboy/stdshout
 
 ## Jan-Erik Rediger — [@badboy_](https://twitter.com/badboy_)
+
+???
+
+thank you.
 
   </textarea>
     <script src="public/remark.js" type="text/javascript">
