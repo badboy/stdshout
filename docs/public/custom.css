@@ -96,6 +96,9 @@ li > ul li {
   padding: 0;
 }
 
+.fullimg img {
+  width: 90%;
+}
 .withimg img {
   width: 30%;
 }
