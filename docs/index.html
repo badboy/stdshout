@@ -329,15 +329,61 @@ but now for something completely different
 
 ---
 
-class: middle
+class: middle, center
 
 # Run before everything everything else
 
 ---
 
+class: middle, center
+
 # LD_PRELOAD
 
 .footnote[Jess Fraz's [LD_PRELOAD: The Hero We Need and Deserve](https://blog.jessfraz.com/post/ld_preload/)]
+
+???
+
+[quote]
+
+When you run LD_PRELOAD=/path/to/my/free.so /bin/mybinary, /path/to/my/free.so is loaded before any other library, including libc.
+
+---
+
+## Things LD_PRELOAD can do
+
+--
+
+* Time travel
+--
+
+* Changing the environment
+--
+
+* Make Dropbox work on non-ext4
+--
+
+* Disabling TLS cert validation
+
+--
+* ... everything else
+
+---
+
+class: middle, center
+
+# Run before everything everything else?
+
+---
+
+class: center, middle, h1small
+
+# \_\_attribute\_\_((constructor))
+
+???
+
+The constructor attribute causes the function to be called automatically before execution enters main ()
+
+[source: https://gcc.gnu.org/onlinedocs/gcc-4.7.0/gcc/Function-Attributes.html]
 
 ---
 
@@ -404,88 +450,37 @@ class: middle
 
 ---
 
+class: middle, center
+
+# LD_PRELOAD!!!1!
+
+---
+
 ```
-#[ctor]
-fn reopen_stdout() {
+#[constructor]
+fn start_stdhout() {
     // start shouting
 }
 ```
 
 ---
 
-```
-#[ctor]
-fn reopen_stdout() {
-    // find stdshout exe
-```
+class: middle
 
---
-
-```
-    // save current stdout
-```
-
---
-
-```
-    // replace stdout
-```
+# Do something for every output?
 
 ---
 
-```
-fn reopen_stdout() {
-    // find stdshout exe
-    // save current stdout
-    // replace stdout
-```
+class: middle, center
+
+# File Descriptor Magic
+
 
 ---
 
-```
-    // find stdshout exe
-    // save current stdout
-    // replace stdout
-```
+class: h1small
 
---
-
-```
-    // fork
-```
-
---
-
-```
-    // (child) read <=> stdin
-```
-
----
-
-```
-    // save current stdout
-    // replace stdout
-    // fork
-    // (child) read <=> stdin
-```
-
----
-
-```
-    // replace stdout
-    // fork
-    // (child) read <=> stdin
-```
-
---
-
-```
-    // exec stdshout
-```
-
----
-
-# $ make run
+# $ LD_PRELOAD=stdshout.so bash
 
 ---
 
@@ -495,9 +490,11 @@ fn reopen_stdout() {
 
 ---
 
+class: h1small
+
 # $ git status
 # ON BRANCH MASTER!!!1!
-# YOUR BRANCH IS UP TO DATE WITH 'U/MASTER'
+# YOUR BRANCH IS UP TO DATE WITH 'ORIGIN/MASTER'!!!1!
 
 ---
 
